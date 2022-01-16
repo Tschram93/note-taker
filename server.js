@@ -37,3 +37,28 @@ app.get('/api/notes', (req, res) => {
 		res.json(notes);
 	});
 });
+
+//POST    
+app.post('/api/notes', (req, res) => {
+	if (req.body.title && req.body.text) {
+		const newNote = {
+			title: req.body.title,
+			text: req.body.text,
+			id: uuidv4(),
+		};
+		console.log(`Saving new note:`, newNote);
+		fs.readFile('./db/db.json', 'utf8', (err, data) => {
+			if (err) throw err;
+			const parseData = JSON.parse(data);
+			parseData.push(newNote);
+
+			const noteSave = JSON.stringify(parseData);
+			fs.writeFile('./db/db.json', noteSave, (err) => {
+				if (err) throw err;
+				res.status(200).send('Note saved: success');
+			});
+		});
+	} else {
+		res.status(400).send('Did not send');
+	}
+});
