@@ -15,3 +15,15 @@ app.use(
 );
 // set static folder to public
 app.use(express.static('public/'));
+
+// link to other files
+
+// landing page
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, '/public/index/html'));
+});
+
+// notes html page
+app.get('/notes', (req, res) => {
+	res.sendFile(path.join(__dirname, '/public/notes.html'));
+});
