@@ -1,6 +1,12 @@
-[
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
-]
+{
+    "users": [
+        {
+            "id":"1",
+            "firstName":"John",
+            "lastName":"Doe",
+            "email":"johnDoe@gmail.com",
+            "age": 37
+
+        }
+    ]
+}
